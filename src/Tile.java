@@ -1,20 +1,13 @@
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class Tile extends JComponent{
-	public static int BLOCK = 1;
+	
 	public static int NO_BLOCK = 0;
+	public static int BLOCK = 1;
 	public static int CHARACTER = 2;
 	public int type;
 	private Image image;
@@ -44,10 +37,10 @@ public class Tile extends JComponent{
 	}
 	public void assignImage(){
 		if(this.type==Tile.NO_BLOCK){
-			image = new ImageIcon(getClass().getResource("NOBLOCK.jpg")).getImage();
+			image = new ImageIcon(getClass().getResource("FLOORMINI.png")).getImage();
 		}
 		if(this.type==Tile.BLOCK){
-			image = new ImageIcon(getClass().getResource("BLOCK.png")).getImage();
+			image = new ImageIcon(getClass().getResource("WALLMINI_.png")).getImage();
 		}
 		if(this.type==Tile.CHARACTER){
 			image = new ImageIcon(getClass().getResource("CHARACTERMINI.png")).getImage();

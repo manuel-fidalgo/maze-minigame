@@ -1,9 +1,7 @@
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import javax.swing.ImageIcon;
+
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -53,6 +51,19 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		for (int i = 0; i < vision_xmaplength; i++) {
 			for (int j = 0; j < vision_ymaplength; j++) {
 				this.add(tiles_matrix[i][j]);
+			}
+		}
+		tiles_matrix[2][3].setType(Tile.BLOCK);
+		tiles_matrix[2][4].setType(Tile.BLOCK);
+		tiles_matrix[2][5].setType(Tile.BLOCK);
+		tiles_matrix[2][6].setType(Tile.BLOCK);
+		for (int i = 0; i < 6; i++) {
+			tiles_matrix[i][5].setType(Tile.BLOCK);
+		}
+		for (int i = 5; i < 10; i++) {
+			for (int j = 5; j < 10; j++) {
+				if(i!=7&&j!=7)
+				tiles_matrix[i][j].setType(Tile.BLOCK);
 			}
 		}
 		repaint();

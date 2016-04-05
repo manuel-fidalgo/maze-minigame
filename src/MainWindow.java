@@ -37,8 +37,11 @@ public class MainWindow{
 	private void initialize() {
 		this.frame = new JFrame("MiniGame");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.map = new MatrixTiles(15,30);
-		frame.setBounds(10, 10, 15*50,15*50);
+		int x,y;
+		x=15;
+		y=15;
+		this.map = new MatrixTiles(x,y);
+		frame.setBounds(10, 10, x*50,y*50);
 		frame.setResizable(true);
 		frame.getContentPane().add(map, BorderLayout.CENTER);
 		frame.addKeyListener(map);

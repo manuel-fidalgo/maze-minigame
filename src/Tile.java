@@ -10,24 +10,15 @@ public class Tile extends JComponent{
 	public static int NO_BLOCK = 0;
 	public static int BLOCK = 1;
 	public static int CHARACTER = 2;
+	private boolean right_leg;
 	public int type;
 	private Image image;
 
 	public Tile(int i){
 		this.type = i;
 	}
-	/*
-	public Tile(int i,int fil,int col){
-		this.type = i;
-		assignImage();
-
-		this.fil = fil;
-		this.col = col;
-	}
-	 */
 	public void doBlock(){
 		this.type = Tile.BLOCK;
-		//assignImage();
 	}
 	public Image getImage(){
 		return this.image;
@@ -40,19 +31,25 @@ public class Tile extends JComponent{
 	}
 	public void assignImage(){
 		if(this.type==Tile.NO_BLOCK){
-			image = new ImageIcon(getClass().getResource("FLOORMINI.png")).getImage();
+			image = new ImageIcon(getClass().getResource("FLOOR_MINI.png")).getImage();
 		}
 		if(this.type==Tile.BLOCK){
-			image = new ImageIcon(getClass().getResource("WALLMINI_.png")).getImage();
+			image = new ImageIcon(getClass().getResource("NEWTREE_MINI.png")).getImage();
 		}
 		if(this.type==Tile.CHARACTER){
-			image = new ImageIcon(getClass().getResource("CHARACTERMINI.png")).getImage();
+			if(right_leg)
+				image = new ImageIcon(getClass().getResource("CHARACTER_MINI_1.png")).getImage();
+			else
+				image = new ImageIcon(getClass().getResource("CHARACTER_MINI_0.png")).getImage();
 		}
 		repaint();
 	}
 	@Override
 	protected void paintComponent(Graphics g) {
 		g.drawImage(this.getImage(),0,0,getWidth(),getHeight(),null);
+	}
+	public void changeLeg() {
+		this.right_leg = !this.right_leg;
 	}
 
 }

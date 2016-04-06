@@ -1,19 +1,22 @@
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.PaintContext;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class MatrixTiles extends JPanel implements KeyListener{
 
 	private Tile[][] tiles_matrix;
-	private int currentFil,currentCol;
+	public int currentFil,currentCol;
+	public int finalFil,finalCol;
 	private int vision_xmaplength,vision_ymaplength;
-	private int xmaplength,ymaplength;
+	public boolean godMode;
+	@SuppressWarnings("unused") private int xmaplength,ymaplength;
+	
+	Animator anim;
 
 	GridLayout g;
 	/**
@@ -21,7 +24,8 @@ public class MatrixTiles extends JPanel implements KeyListener{
 	 * @param y vision y length
 	 */
 	public MatrixTiles(int x, int y){
-
+		godMode=true;
+		
 		this.vision_xmaplength = x;
 		this.vision_ymaplength = y;
 		/*Cosntraints*/
@@ -32,23 +36,28 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		g = new GridLayout(this.vision_xmaplength,this.vision_ymaplength);
 		this.setLayout(g);
 
-		this.currentCol = 185;
-		this.currentFil = 740;
+		this.currentFil = 741;
+		this.currentCol = 193;
+		this.finalFil=74;
+		this.finalCol=696;
 		
 		try {
 			loadMap(Map.getMap());
 		} catch (IOException e) {
 			System.err.println("Loading map error.");
 		}
-		
+		anim = new Animator(this);
+		anim.start();
 		loadPortion(currentCol,currentFil);
 	}
-	
+	public Tile getTileAt(int i, int j){
+		return this.tiles_matrix[i][j];
+	}
 	public void loadMap(Map p) throws IOException{
 		this.tiles_matrix = new Tile[Map.getLengh()][Map.getLengh()];
 		//map and tiles_matrix have the same length
 		for (int i = 0; i < tiles_matrix.length; i++) {
-			for (int j = 0; j < tiles_matrix.length; j++) {
+			for (int j = 0; j < tiles_matrix[i].length; j++) {
 				switch(p.getAt(i, j)){
 				case Map.BLOCK:
 					tiles_matrix[i][j] = new Tile(Tile.BLOCK);
@@ -76,7 +85,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 				tiles_matrix[i][j].assignImage();
 				this.add(tiles_matrix[i][j]);
 				}catch(IndexOutOfBoundsException w){
-					System.err.println("Mapa mal planteado\n");
+					System.err.println("OutOfmap\n");
 				}
 			}
 		}
@@ -111,10 +120,14 @@ public class MatrixTiles extends JPanel implements KeyListener{
 			break;
 		default:
 			break;
-		}	
+		}
+		if(this.currentCol==this.finalCol&&this.currentFil==this.finalFil){
+			JOptionPane.showMessageDialog(getParent(), "Has Ganado!");
+			System.exit(0);
+		}
 	}
 	private void moveRight() {
-		if(tiles_matrix[currentFil][currentCol+1].getType()==Tile.NO_BLOCK){
+		if(godMode || tiles_matrix[currentFil][currentCol+1].getType()==Tile.NO_BLOCK){
 			tiles_matrix[currentFil][currentCol+1].setType(Tile.CHARACTER);
 			tiles_matrix[currentFil][currentCol].setType(Tile.NO_BLOCK);
 			currentCol++;
@@ -122,7 +135,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		loadPortion(currentFil, currentCol);
 	}
 	private void moveLeft() {
-		if(tiles_matrix[currentFil][currentCol-1].getType()==Tile.NO_BLOCK){
+		if(godMode || tiles_matrix[currentFil][currentCol-1].getType()==Tile.NO_BLOCK){
 			tiles_matrix[currentFil][currentCol-1].setType(Tile.CHARACTER);
 			tiles_matrix[currentFil][currentCol].setType(Tile.NO_BLOCK);
 			currentCol--;
@@ -130,7 +143,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		loadPortion(currentFil, currentCol);
 	}
 	private void moveDown() {
-		if(tiles_matrix[currentFil+1][currentCol].getType()==Tile.NO_BLOCK){
+		if(godMode || tiles_matrix[currentFil+1][currentCol].getType()==Tile.NO_BLOCK){
 			tiles_matrix[currentFil+1][currentCol].setType(Tile.CHARACTER);
 			tiles_matrix[currentFil][currentCol].setType(Tile.NO_BLOCK);
 			currentFil++;
@@ -138,7 +151,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		loadPortion(currentFil, currentCol);
 	}
 	private void moveUp() {
-		if(tiles_matrix[currentFil-1][currentCol].getType()==Tile.NO_BLOCK){
+		if(godMode || tiles_matrix[currentFil-1][currentCol].getType()==Tile.NO_BLOCK){
 			tiles_matrix[currentFil-1][currentCol].setType(Tile.CHARACTER);
 			tiles_matrix[currentFil][currentCol].setType(Tile.NO_BLOCK);
 			currentFil--;

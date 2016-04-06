@@ -50,6 +50,7 @@ public class Tile extends JComponent{
 	}
 	public void changeLeg() {
 		this.right_leg = !this.right_leg;
+		assignImage();
 	}
 
 }

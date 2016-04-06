@@ -8,6 +8,7 @@ public class MainWindow{
 
 	private JFrame frame;
 	private MatrixTiles map;
+	public static final int PIXELS=50;
 	/**
 	 * Launch the application.
 	 */
@@ -37,11 +38,11 @@ public class MainWindow{
 	private void initialize() {
 		this.frame = new JFrame("MiniGame");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		int x,y;
-		x=15;
-		y=15;
-		this.map = new MatrixTiles(x,y);
-		frame.setBounds(10, 10, x*50,y*50);
+		int vision_x,vision_y;
+		vision_x=15;
+		vision_y=15;
+		this.map = new MatrixTiles(vision_x,vision_y);
+		frame.setBounds(10, 10, vision_x*PIXELS, vision_y*PIXELS);
 		frame.setResizable(true);
 		frame.getContentPane().add(map, BorderLayout.CENTER);
 		frame.addKeyListener(map);

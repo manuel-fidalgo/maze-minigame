@@ -24,7 +24,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 	 * @param y vision y length
 	 */
 	public MatrixTiles(int x, int y){
-		godMode=true;
+		godMode=false;
 		
 		this.vision_xmaplength = x;
 		this.vision_ymaplength = y;
@@ -122,7 +122,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 			break;
 		}
 		if(this.currentCol==this.finalCol&&this.currentFil==this.finalFil){
-			JOptionPane.showMessageDialog(getParent(), "Has Ganado!");
+			JOptionPane.showMessageDialog(getParent(), "You win!");
 			System.exit(0);
 		}
 	}

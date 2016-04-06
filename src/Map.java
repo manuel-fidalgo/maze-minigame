@@ -6,7 +6,7 @@ import java.io.IOException;
 public class Map {
 	private char[][] map;
 	private static Map singleton_map;
-	private static int len=771;
+	private static int len = M.size;
 	public static final char BLOCK='x';
 	public static final char NO_BLOCK='o';
 	public static final char CHARACTER='n';

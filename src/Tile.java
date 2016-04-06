@@ -5,21 +5,29 @@ import javax.swing.JComponent;
 
 @SuppressWarnings("serial")
 public class Tile extends JComponent{
-	
+	public int fil,col;
+
 	public static int NO_BLOCK = 0;
 	public static int BLOCK = 1;
 	public static int CHARACTER = 2;
 	public int type;
 	private Image image;
-	
+
 	public Tile(int i){
-		this.setBorder(null);
+		this.type = i;
+	}
+	/*
+	public Tile(int i,int fil,int col){
 		this.type = i;
 		assignImage();
+
+		this.fil = fil;
+		this.col = col;
 	}
+	 */
 	public void doBlock(){
 		this.type = Tile.BLOCK;
-		assignImage();
+		//assignImage();
 	}
 	public Image getImage(){
 		return this.image;
@@ -29,11 +37,6 @@ public class Tile extends JComponent{
 	}
 	public void setType(int t){
 		this.type=t;
-		assignImage();
-	}
-	public void setImage(Image img){
-		this.image = img;
-		repaint();
 	}
 	public void assignImage(){
 		if(this.type==Tile.NO_BLOCK){
@@ -51,5 +54,5 @@ public class Tile extends JComponent{
 	protected void paintComponent(Graphics g) {
 		g.drawImage(this.getImage(),0,0,getWidth(),getHeight(),null);
 	}
-	
+
 }

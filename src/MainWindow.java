@@ -47,20 +47,4 @@ public class MainWindow{
 		frame.addKeyListener(map);
 		
 	}
-	/*
-	 oooooxooooooooooooooooooooooo
-	 oooooxooooooooooooooooooooooo
-	 oooooxooooooooooooooooooooooo
-	 oooooxooooooooooooooooooooooo
-	 oooooxooooooooooooooooooooooo
-	 oooooxooooooooooooooooooooooo
-	 oooooxooooooooxxxxxxxxxxxxxxx
-	 oooooxooooooooxoooooooooooooo
-	 oooooxooooooooxoooooooooooooo
-	 oooooxxxxxxxxxxoooooooooooooo
-	 ooooooooooooooooooooooooooooo
-	 ooooooooooooooooooooooooooooo
-	 ooooooooooooooooooooooooooooo
-	 
-	 */
 }

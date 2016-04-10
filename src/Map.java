@@ -22,7 +22,7 @@ public class Map {
 			}
 			bf.close();
 		} catch (FileNotFoundException e) {
-			System.err.println("File not found");
+			System.err.println("File not found exception.");
 			System.exit(-1);
 		} catch (IOException e) {
 			System.err.println("IO error");

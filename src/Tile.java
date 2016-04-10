@@ -10,15 +10,18 @@ public class Tile extends JComponent{
 	public static int NO_BLOCK = 0;
 	public static int BLOCK = 1;
 	public static int CHARACTER = 2;
+	public static int CHERRY = 3;
 	private boolean right_leg;
+	private boolean up;
 	public int type;
 	private Image image;
 
 	public Tile(int i){
 		this.type = i;
 	}
-	public void doBlock(){
-		this.type = Tile.BLOCK;
+	public void doCherry(){
+		this.type = Tile.CHERRY;
+		this.up = true;
 	}
 	public Image getImage(){
 		return this.image;
@@ -42,6 +45,12 @@ public class Tile extends JComponent{
 			else
 				image = new ImageIcon(getClass().getResource("CHARACTER_MINI_0.png")).getImage();
 		}
+		if(this.type==Tile.CHERRY){
+			if(up)
+				image = new ImageIcon(getClass().getResource("CHERRY_UP.png")).getImage();
+			else
+				image = new ImageIcon(getClass().getResource("CHERRY_DOWN.png")).getImage();
+		}
 		repaint();
 	}
 	@Override
@@ -50,6 +59,10 @@ public class Tile extends JComponent{
 	}
 	public void changeLeg() {
 		this.right_leg = !this.right_leg;
+		assignImage();
+	}
+	public void changePosition() {
+		this.up = !this.up;
 		assignImage();
 	}
 

@@ -9,10 +9,21 @@ public class MainWindow{
 	private JFrame frame;
 	private MatrixTiles map;
 	public static final int PIXELS=50;
+	public static boolean godmode = false;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		try{
+			if(args[0].equalsIgnoreCase("godmode"))
+				godmode = true;
+			else
+				godmode = false;
+		}catch(Exception e){
+			godmode = false;
+		}
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -41,11 +52,11 @@ public class MainWindow{
 		int vision_x,vision_y;
 		vision_x=15;
 		vision_y=15;
-		this.map = new MatrixTiles(vision_x,vision_y);
+		this.map = new MatrixTiles(vision_x,vision_y,godmode);
 		frame.setBounds(10, 10, vision_x*PIXELS, vision_y*PIXELS);
 		frame.setResizable(true);
 		frame.getContentPane().add(map, BorderLayout.CENTER);
 		frame.addKeyListener(map);
-		
+
 	}
 }

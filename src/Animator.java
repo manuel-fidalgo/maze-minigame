@@ -12,6 +12,9 @@ public class Animator extends Thread{
 			try {
 				Thread.sleep(300);
 				mt.getTileAt(mt.currentFil,mt.currentCol).changeLeg();
+				for(Box i : mt.cherry_boxes){
+					mt.getTileAt(i.fil, i.col).changePosition();
+				}
 			} catch (InterruptedException e) {
 				System.err.println("thread interrupted.");
 			}

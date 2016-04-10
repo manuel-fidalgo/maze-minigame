@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 
@@ -49,13 +50,16 @@ public class MainWindow{
 	private void initialize() {
 		this.frame = new JFrame("MiniGame");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.frame.getContentPane().setLayout(new BorderLayout());
 		int vision_x,vision_y;
 		vision_x=15;
 		vision_y=15;
 		this.map = new MatrixTiles(vision_x,vision_y,godmode);
 		frame.setBounds(10, 10, vision_x*PIXELS, vision_y*PIXELS);
 		frame.setResizable(true);
+		frame.getContentPane().setLayout(new BorderLayout());
 		frame.getContentPane().add(map, BorderLayout.CENTER);
+		frame.getContentPane().add(new ScorePanel(), BorderLayout.SOUTH);
 		frame.addKeyListener(map);
 
 	}

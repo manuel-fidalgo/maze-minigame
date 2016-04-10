@@ -17,7 +17,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 	public boolean godMode;
 	ArrayList<Box> cherry_boxes;
 	@SuppressWarnings("unused") private int xmaplength,ymaplength;
-	
+
 	Animator anim;
 
 	GridLayout g;
@@ -27,11 +27,11 @@ public class MatrixTiles extends JPanel implements KeyListener{
 	 */
 	public MatrixTiles(int x, int y,boolean gmode){
 		godMode=gmode;
-		
+
 		this.vision_xmaplength = x;
 		this.vision_ymaplength = y;
 		cherry_boxes = new ArrayList<Box>();
-		
+
 		/*Cosntraints*/
 		this.xmaplength = Map.getLengh();
 		this.ymaplength = Map.getLengh();
@@ -44,7 +44,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		this.currentCol = 193;
 		this.finalFil=74;
 		this.finalCol=696;
-		
+
 		try {
 			loadMap(Map.getMap());
 		} catch (IOException e) {
@@ -79,20 +79,20 @@ public class MatrixTiles extends JPanel implements KeyListener{
 			}
 		}
 		this.tiles_matrix[currentCol][currentFil].setType(Tile.CHARACTER);
-		
+
 	}
-	
+
 	public void loadPortion(int fil, int col){
 		removeAll();
 		cherry_boxes.clear();
 		for (int i = fil-(vision_xmaplength-1)/2; i <= fil+(vision_xmaplength-1)/2; i++) {
 			for (int j = col-(vision_ymaplength-1)/2; j <= col+(vision_ymaplength-1)/2; j++) {
 				try{
-				tiles_matrix[i][j].assignImage();
-				if(tiles_matrix[i][j].getType()==Tile.CHERRY){
-					cherry_boxes.add(new Box(i,j));
-				}
-				this.add(tiles_matrix[i][j]);
+					tiles_matrix[i][j].assignImage();
+					if(tiles_matrix[i][j].getType()==Tile.CHERRY){
+						cherry_boxes.add(new Box(i,j));
+					}
+					this.add(tiles_matrix[i][j]);
 				}catch(IndexOutOfBoundsException w){
 					System.err.println("OutOfmap\n");
 				}
@@ -101,7 +101,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		validate();
 		repaint();
 	}
-	
+
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {

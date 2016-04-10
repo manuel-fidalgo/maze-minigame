@@ -17,9 +17,8 @@ public class MatrixTiles extends JPanel implements KeyListener{
 	public boolean godMode;
 	ArrayList<Box> cherry_boxes;
 	@SuppressWarnings("unused") private int xmaplength,ymaplength;
-
+	
 	Animator anim;
-
 	GridLayout g;
 	/**
 	 * @param x vision x length
@@ -40,10 +39,10 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		g = new GridLayout(this.vision_xmaplength,this.vision_ymaplength);
 		this.setLayout(g);
 
-		this.currentFil = 92;
-		this.currentCol = 9;
-		this.finalFil=50;
-		this.finalCol=50;
+		this.currentFil = 9;
+		this.currentCol = 92;
+		this.finalFil=92;
+		this.finalCol=9;
 
 		try {
 			loadMap(Map.getMap());

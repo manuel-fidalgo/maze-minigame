@@ -27,7 +27,7 @@ public class Map {
 			
 			for (int i = 0; i < map.length; i++) {
 				for (int j = 0; j < map.length; j++) {
-					aux = new Color(image.getRGB(i, j));
+					aux = new Color(image.getRGB(j, i));
 					if(aux.getBlue()>100 && aux.getRed()>100 && aux.getGreen()>100){
 						map[i][j]=NO_BLOCK;
 					}else{
@@ -53,5 +53,16 @@ public class Map {
 	}
 	public char getAt(int x, int y){
 		return this.map[x][y];
+	}
+	@Override 
+	public String toString(){
+		StringBuffer sf = new StringBuffer();
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map.length; j++) {
+				sf.append(map[i][j]);
+			}
+			sf.append("\n");
+		}
+		return sf.toString();
 	}
 }

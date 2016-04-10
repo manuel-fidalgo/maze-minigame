@@ -1,5 +1,6 @@
 
 public class M {
-	public static int size=771; //771x771
+	public static int size; //Determinated in the map class
 	public static int points;
+
 }

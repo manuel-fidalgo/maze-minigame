@@ -40,10 +40,10 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		g = new GridLayout(this.vision_xmaplength,this.vision_ymaplength);
 		this.setLayout(g);
 
-		this.currentFil = 741;
-		this.currentCol = 193;
-		this.finalFil=74;
-		this.finalCol=696;
+		this.currentFil = 92;
+		this.currentCol = 9;
+		this.finalFil=50;
+		this.finalCol=50;
 
 		try {
 			loadMap(Map.getMap());

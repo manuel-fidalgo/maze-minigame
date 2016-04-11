@@ -57,7 +57,7 @@ public class MainWindow{
 		frame.setBounds(10, 10, vision_x*PIXELS, vision_y*PIXELS);
 		frame.setResizable(true);
 		frame.getContentPane().setLayout(new BorderLayout(0,0));
-		frame.getContentPane().add(new ScorePanel(), BorderLayout.SOUTH);
+		frame.getContentPane().add(ScorePanel.getScorePanel(), BorderLayout.SOUTH);
 		frame.getContentPane().add(map, BorderLayout.CENTER);
 		frame.addKeyListener(map);
 

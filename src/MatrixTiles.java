@@ -20,6 +20,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 	
 	Animator anim;
 	GridLayout g;
+	//ScorePanel implements singleton pattern
 	/**
 	 * @param x vision x length
 	 * @param y vision y length
@@ -136,7 +137,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 	}
 	private void moveRight() {
 		if(godMode || tiles_matrix[currentFil][currentCol+1].getType()!=Tile.BLOCK){
-			if(tiles_matrix[currentFil][currentCol+1].getType()==Tile.CHERRY) M.points++;
+			if(tiles_matrix[currentFil][currentCol+1].getType()==Tile.CHERRY) ScorePanel.getScorePanel().addPoint();
 			tiles_matrix[currentFil][currentCol+1].setType(Tile.CHARACTER);
 			tiles_matrix[currentFil][currentCol].setType(Tile.NO_BLOCK);
 			currentCol++;
@@ -145,7 +146,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 	}
 	private void moveLeft() {
 		if(godMode || tiles_matrix[currentFil][currentCol-1].getType()!=Tile.BLOCK ){
-			if(tiles_matrix[currentFil][currentCol-1].getType()==Tile.CHERRY) M.points++;
+			if(tiles_matrix[currentFil][currentCol-1].getType()==Tile.CHERRY) ScorePanel.getScorePanel().addPoint();
 			tiles_matrix[currentFil][currentCol-1].setType(Tile.CHARACTER);
 			tiles_matrix[currentFil][currentCol].setType(Tile.NO_BLOCK);
 			currentCol--;
@@ -154,7 +155,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 	}
 	private void moveDown() {
 		if(godMode || tiles_matrix[currentFil+1][currentCol].getType()!=Tile.BLOCK){
-			if(tiles_matrix[currentFil+1][currentCol].getType()==Tile.CHERRY)M.points++;
+			if(tiles_matrix[currentFil+1][currentCol].getType()==Tile.CHERRY)ScorePanel.getScorePanel().addPoint();
 			tiles_matrix[currentFil+1][currentCol].setType(Tile.CHARACTER);
 			tiles_matrix[currentFil][currentCol].setType(Tile.NO_BLOCK);
 			currentFil++;
@@ -163,7 +164,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 	}
 	private void moveUp() {
 		if(godMode || tiles_matrix[currentFil-1][currentCol].getType()!=Tile.BLOCK){
-			if(tiles_matrix[currentFil-1][currentCol].getType()==Tile.CHERRY)M.points++;
+			if(tiles_matrix[currentFil-1][currentCol].getType()==Tile.CHERRY)ScorePanel.getScorePanel().addPoint();
 			tiles_matrix[currentFil-1][currentCol].setType(Tile.CHARACTER);
 			tiles_matrix[currentFil][currentCol].setType(Tile.NO_BLOCK);
 			currentFil--;

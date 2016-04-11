@@ -18,6 +18,7 @@ public class Tile extends JComponent{
 	private Image image;
 
 	public Tile(int i){
+		this.current_image=0;
 		this.type = i;
 	}
 	public void doCherry(){
@@ -76,6 +77,7 @@ public class Tile extends JComponent{
 	}
 	public void changeImage(){
 		this.current_image = (++this.current_image)%4;
+		assignImage();
 	}
 	public void changePosition() {
 		this.up = !this.up;

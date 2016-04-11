@@ -17,6 +17,8 @@ public class Animator extends Thread{
 				}
 			} catch (InterruptedException e) {
 				System.err.println("thread interrupted.");
+			}catch(java.util.ConcurrentModificationException ex){
+				System.err.println("Concurrent modificaiton exception");
 			}
 			
 		}

@@ -22,9 +22,10 @@ public class ScorePanel extends JComponent{
 	
 	private ScorePanel() {
 		this.points=0;
+		this.setBounds(0, 0, 300, 300);
 		try{
 		back = new ImageIcon(getClass().getResource("BACKGROUND.png")).getImage();
-		current_font = Font.createFont(Font.TRUETYPE_FONT, new File("bin\\FONT.ttf")).deriveFont(34f);
+		current_font = Font.createFont(Font.TRUETYPE_FONT, new File("bin\\FONT.ttf")).deriveFont(60f);
 		ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("bin\\FONT.ttf")));
 		} catch (FontFormatException | IOException e) {

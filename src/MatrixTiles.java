@@ -171,11 +171,9 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		}
 		loadPortion(currentFil, currentCol);
 	}
+	/*Not Used*/
 	@Override
-	public void keyReleased(KeyEvent arg0) {
-
-	}
+	public void keyReleased(KeyEvent arg0) {}
 	@Override
-	public void keyTyped(KeyEvent arg0) {
-	}
+	public void keyTyped(KeyEvent arg0) {}
 }

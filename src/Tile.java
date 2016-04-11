@@ -12,6 +12,7 @@ public class Tile extends JComponent{
 	public static int CHARACTER = 2;
 	public static int CHERRY = 3;
 	private boolean right_leg;
+	private int current_image;
 	private boolean up;
 	public int type;
 	private Image image;
@@ -40,10 +41,22 @@ public class Tile extends JComponent{
 			image = new ImageIcon(getClass().getResource("NEWTREE_MINI.png")).getImage();
 		}
 		if(this.type==Tile.CHARACTER){
-			if(right_leg)
-				image = new ImageIcon(getClass().getResource("CHARACTER_MINI_1.png")).getImage();
-			else
-				image = new ImageIcon(getClass().getResource("CHARACTER_MINI_0.png")).getImage();
+			switch(current_image){
+			case 0:
+				image = new ImageIcon(getClass().getResource("0.png")).getImage();
+				break;
+			case 1:
+				image = new ImageIcon(getClass().getResource("1.png")).getImage();
+				break;
+			case 2:
+				image = new ImageIcon(getClass().getResource("2.png")).getImage();
+				break;
+			case 3:
+				image = new ImageIcon(getClass().getResource("3.png")).getImage();
+				break;
+				default:
+					System.err.println("Error assingning image");
+			}
 		}
 		if(this.type==Tile.CHERRY){
 			if(up)
@@ -60,6 +73,9 @@ public class Tile extends JComponent{
 	public void changeLeg() {
 		this.right_leg = !this.right_leg;
 		assignImage();
+	}
+	public void changeImage(){
+		this.current_image = (++this.current_image)%4;
 	}
 	public void changePosition() {
 		this.up = !this.up;

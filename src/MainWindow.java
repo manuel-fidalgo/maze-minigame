@@ -1,5 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.GridLayout;
+
 import javax.swing.JFrame;
 
 
@@ -54,11 +56,11 @@ public class MainWindow{
 		vision_x=15;
 		vision_y=15;
 		this.map = new MatrixTiles(vision_x,vision_y,godmode);
-		frame.setBounds(10, 10, vision_x*PIXELS, vision_y*PIXELS);
+		frame.setBounds(10, 10, vision_x*PIXELS, vision_y*PIXELS+30);
 		frame.setResizable(true);
-		frame.getContentPane().setLayout(new BorderLayout(0,0));
-		frame.getContentPane().add(ScorePanel.getScorePanel(), BorderLayout.SOUTH);
-		frame.getContentPane().add(map, BorderLayout.CENTER);
+		frame.getContentPane().setLayout(new GridLayout(2, 1));
+		frame.getContentPane().add(map,BorderLayout.CENTER);
+		frame.getContentPane().add(ScorePanel.getScorePanel(),BorderLayout.SOUTH);
 		frame.addKeyListener(map);
 
 	}

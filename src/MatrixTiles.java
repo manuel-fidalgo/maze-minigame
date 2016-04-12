@@ -140,7 +140,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 			moveRight();
 		}else{
 			Tile.direction = Tile.EAST;
-			getTileAt(currentFil, currentCol).assignImage();
+			getTileAt(currentFil, currentCol).changeFrame();
 		}
 	}
 	private void tryMoveLeft(){
@@ -148,7 +148,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 			moveLeft();
 		}else{
 			Tile.direction = Tile.WEST;
-			getTileAt(currentFil, currentCol).assignImage();
+			getTileAt(currentFil, currentCol).changeFrame();
 		}
 	}
 	private void tryMoveUp(){
@@ -156,7 +156,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 			moveUp();
 		}else{
 			Tile.direction = Tile.NORTH;
-			getTileAt(currentFil, currentCol).assignImage();
+			getTileAt(currentFil, currentCol).changeFrame();
 		}
 	}
 	private void tryMoveDown(){
@@ -164,7 +164,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 			moveDown();
 		}else{
 			Tile.direction = Tile.SOUTH;
-			getTileAt(currentFil, currentCol).assignImage();
+			getTileAt(currentFil, currentCol).changeFrame();
 		}
 	}
 	private void moveRight() {

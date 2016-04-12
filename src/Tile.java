@@ -24,10 +24,13 @@ public class Tile extends JComponent{
 	public static final int WEST = 3;
 	
 
-	public static int currentInUp;
-	public static int currentInDown;
-	public static int currentInRight;
-	public static int currentInLeft;
+	public static int currentInDown=0;
+	public static int currentInRight=3;
+	public static int currentInLeft=5;
+	public static int currentInUp=7;
+	
+	
+	
 	
 
 
@@ -73,22 +76,54 @@ public class Tile extends JComponent{
 	public synchronized void changeFrame(){
 		switch(direction){
 		case NORTH:
-			image = new ImageIcon(getClass().getResource(ImageContainter.images[7])).getImage();
+			image = new ImageIcon(getClass().getResource(ImageContainter.images[getUp()])).getImage();
 			break;
 		case EAST:
-			image = new ImageIcon(getClass().getResource(ImageContainter.images[3])).getImage();
+			image = new ImageIcon(getClass().getResource(ImageContainter.images[getRight()])).getImage();
 			break;
 		case WEST:
-			image = new ImageIcon(getClass().getResource(ImageContainter.images[6])).getImage();
+			image = new ImageIcon(getClass().getResource(ImageContainter.images[getLeft()])).getImage();
 			break;
 		case SOUTH:
-			image = new ImageIcon(getClass().getResource(ImageContainter.images[0])).getImage();
+			image = new ImageIcon(getClass().getResource(ImageContainter.images[getDown()])).getImage();
 			break;
 		default:
 			System.err.println("No matching direction.");
-
 		}
+		repaint();
 	}
+	/*0 1 2*/
+	public int getDown(){
+		currentInDown++;
+		if(currentInDown==3) currentInDown = 0;
+		return currentInDown;
+	}
+	/*3 4*/
+	public int getRight(){
+		if(currentInRight==3){
+			currentInRight++;
+		}else{
+			currentInRight--;
+		}
+		return currentInRight;
+	}
+	/*5 6 */
+	public int getLeft(){
+		if(currentInLeft==5){
+			currentInLeft++;
+		}else{
+			currentInLeft--;
+		}
+		return currentInLeft;
+		
+	}
+	/*7 8 9*/
+	public int getUp(){
+		currentInUp++;
+		if(currentInUp==10) currentInUp = 7;
+		return currentInUp;
+	}
+
 
 	/*Used for animate the cherries*/
 	public synchronized void changePosition() {

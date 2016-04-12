@@ -17,7 +17,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 	public boolean godMode;
 	ArrayList<Box> cherry_boxes;
 	@SuppressWarnings("unused") private int xmaplength,ymaplength;
-	
+
 	Animator anim;
 	GridLayout g;
 	//ScorePanel implements singleton pattern
@@ -108,19 +108,19 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		switch (arg0.getKeyCode()) {
 		case KeyEvent.VK_UP:
 		case KeyEvent.VK_W:
-			moveUp();
+			tryMoveUp();
 			break;
 		case KeyEvent.VK_DOWN:
 		case KeyEvent.VK_S:
-			moveDown();
+			tryMoveDown();
 			break;
 		case KeyEvent.VK_LEFT:
 		case KeyEvent.VK_A:
-			moveLeft();
+			tryMoveLeft();
 			break;
 		case KeyEvent.VK_RIGHT:
 		case KeyEvent.VK_D:
-			moveRight();
+			tryMoveRight();
 			break;
 		case KeyEvent.VK_SPACE:
 			break;
@@ -133,6 +133,38 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		if(this.currentCol==this.finalCol&&this.currentFil==this.finalFil){
 			JOptionPane.showMessageDialog(getParent(), "You win!");
 			System.exit(0);
+		}
+	}
+	private void tryMoveRight(){
+		if(Tile.direction == Tile.EAST){
+			moveRight();
+		}else{
+			Tile.direction = Tile.EAST;
+			getTileAt(currentFil, currentCol).assignImage();
+		}
+	}
+	private void tryMoveLeft(){
+		if(Tile.direction == Tile.WEST){
+			moveLeft();
+		}else{
+			Tile.direction = Tile.WEST;
+			getTileAt(currentFil, currentCol).assignImage();
+		}
+	}
+	private void tryMoveUp(){
+		if(Tile.direction == Tile.NORTH){
+			moveUp();
+		}else{
+			Tile.direction = Tile.NORTH;
+			getTileAt(currentFil, currentCol).assignImage();
+		}
+	}
+	private void tryMoveDown(){
+		if(Tile.direction == Tile.SOUTH){
+			moveDown();
+		}else{
+			Tile.direction = Tile.SOUTH;
+			getTileAt(currentFil, currentCol).assignImage();
 		}
 	}
 	private void moveRight() {

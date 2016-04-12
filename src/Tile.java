@@ -11,14 +11,27 @@ public class Tile extends JComponent{
 	public static int BLOCK = 1;
 	public static int CHARACTER = 2;
 	public static int CHERRY = 3;
-	private boolean right_leg;
-	private int current_image;
 	private boolean up;
 	public int type;
 	private Image image;
 
+	public static int direction;
+
+	/*Direction constraints*/
+	public static final int NORTH = 0;
+	public static final int SOUTH = 1;
+	public static final int EAST = 2;
+	public static final int WEST = 3;
+	
+
+	public static int currentInUp;
+	public static int currentInDown;
+	public static int currentInRight;
+	public static int currentInLeft;
+	
+
+
 	public Tile(int i){
-		this.current_image=0;
 		this.type = i;
 	}
 	public void doCherry(){
@@ -34,7 +47,7 @@ public class Tile extends JComponent{
 	public void setType(int t){
 		this.type=t;
 	}
-	public void assignImage(){
+	public synchronized void assignImage(){
 		if(this.type==Tile.NO_BLOCK){
 			image = new ImageIcon(getClass().getResource("FLOOR_MINI.png")).getImage();
 		}
@@ -42,22 +55,7 @@ public class Tile extends JComponent{
 			image = new ImageIcon(getClass().getResource("NEWTREE_MINI.png")).getImage();
 		}
 		if(this.type==Tile.CHARACTER){
-			switch(current_image){
-			case 0:
-				image = new ImageIcon(getClass().getResource("0.png")).getImage();
-				break;
-			case 1:
-				image = new ImageIcon(getClass().getResource("1.png")).getImage();
-				break;
-			case 2:
-				image = new ImageIcon(getClass().getResource("2.png")).getImage();
-				break;
-			case 3:
-				image = new ImageIcon(getClass().getResource("3.png")).getImage();
-				break;
-				default:
-					System.err.println("Error assingning image");
-			}
+			changeFrame();
 		}
 		if(this.type==Tile.CHERRY){
 			if(up)
@@ -71,15 +69,29 @@ public class Tile extends JComponent{
 	protected void paintComponent(Graphics g) {
 		g.drawImage(this.getImage(),0,0,getWidth(),getHeight(),null);
 	}
-	public void changeLeg() {
-		this.right_leg = !this.right_leg;
-		assignImage();
+	/*Depending of the direction and the current frame*/
+	public synchronized void changeFrame(){
+		switch(direction){
+		case NORTH:
+			image = new ImageIcon(getClass().getResource(ImageContainter.images[7])).getImage();
+			break;
+		case EAST:
+			image = new ImageIcon(getClass().getResource(ImageContainter.images[3])).getImage();
+			break;
+		case WEST:
+			image = new ImageIcon(getClass().getResource(ImageContainter.images[6])).getImage();
+			break;
+		case SOUTH:
+			image = new ImageIcon(getClass().getResource(ImageContainter.images[0])).getImage();
+			break;
+		default:
+			System.err.println("No matching direction.");
+
+		}
 	}
-	public void changeImage(){
-		this.current_image = (++this.current_image)%4;
-		assignImage();
-	}
-	public void changePosition() {
+
+	/*Used for animate the cherries*/
+	public synchronized void changePosition() {
 		this.up = !this.up;
 		assignImage();
 	}

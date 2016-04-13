@@ -15,7 +15,7 @@ public class Tile extends JComponent{
 	public int type;
 	private Image image;
 
-	public static int direction;
+	public static int direction = 1;
 
 	/*Direction constraints*/
 	public static final int NORTH = 0;

@@ -12,16 +12,15 @@ public class Map {
 	private static int len;
 	public static final char BLOCK='x';
 	public static final char NO_BLOCK='o';
-	public static final char CHARACTER='n';
 	
 	private Map(){
 		
 		BufferedImage image;
 		Color aux;
 		try {
-			image = ImageIO.read(new File("bin\\maze_mini.png"));
+			image = ImageIO.read(new File("bin\\maze_200.png"));
 			len = image.getWidth();
-			if(len != image.getHeight()) throw new IOException();
+			if(len != image.getHeight()) throw new IOException("Is not a square map");
 			
 			map = new char[len][len];
 			

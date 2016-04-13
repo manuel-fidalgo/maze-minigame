@@ -20,10 +20,10 @@ public class MatrixTiles extends JPanel implements KeyListener{
 
 	Animator anim;
 	GridLayout g;
-	//ScorePanel implements singleton pattern
 	/**
 	 * @param x vision x length
 	 * @param y vision y length
+	 * @param gmode 
 	 */
 	public MatrixTiles(int x, int y,boolean gmode){
 		godMode=gmode;
@@ -40,10 +40,10 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		g = new GridLayout(this.vision_xmaplength,this.vision_ymaplength);
 		this.setLayout(g);
 
-		this.currentFil = 9;
-		this.currentCol = 92;
-		this.finalFil=92;
-		this.finalCol=9;
+		this.currentFil = 8;
+		this.currentCol = 191;
+		this.finalFil=191;
+		this.finalCol=8;
 
 		try {
 			loadMap(Map.getMap());
@@ -52,14 +52,18 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		}
 		anim = new Animator(this);
 		anim.start();
-		loadPortion(currentCol,currentFil);
+		loadPortion(currentFil,currentCol);
 	}
 	public Tile getTileAt(int i, int j){
 		return this.tiles_matrix[i][j];
 	}
+	/**
+	 * Load the map into tiles_matrix
+	 * @param Map p
+	 * @throws IOException
+	 */
 	public void loadMap(Map p) throws IOException{
 		this.tiles_matrix = new Tile[Map.getLengh()][Map.getLengh()];
-		//map and tiles_matrix have the same length
 		for (int i = 0; i < tiles_matrix.length; i++) {
 			for (int j = 0; j < tiles_matrix[i].length; j++) {
 				switch(p.getAt(i, j)){
@@ -70,18 +74,14 @@ public class MatrixTiles extends JPanel implements KeyListener{
 					tiles_matrix[i][j] = new Tile(Tile.NO_BLOCK);
 					if(((Math.random()*1000))<3) tiles_matrix[i][j].doCherry();
 					break;
-				case Map.CHARACTER:
-					tiles_matrix[i][j] = new Tile(Tile.CHARACTER);
-					break;
 				default:
-					throw new IOException();
+					throw new IOException("No matching map type");
 				}
 			}
 		}
 		this.tiles_matrix[currentCol][currentFil].setType(Tile.CHARACTER);
 
 	}
-
 	public void loadPortion(int fil, int col){
 		removeAll();
 		cherry_boxes.clear();

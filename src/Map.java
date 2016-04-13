@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 public class Map {
 	private char[][] map;
@@ -18,7 +19,7 @@ public class Map {
 		BufferedImage image;
 		Color aux;
 		try {
-			image = ImageIO.read(new File("bin\\maze_200.png"));
+			image = ImageIO.read(getClass().getResourceAsStream("maze_200.png"));
 			len = image.getWidth();
 			if(len != image.getHeight()) throw new IOException("Is not a square map");
 			
@@ -35,10 +36,11 @@ public class Map {
 				}
 			}
 		} catch (FileNotFoundException e) {
-			System.err.println("File not found exception.");
+			JOptionPane.showMessageDialog(null, "Not found map image.");
 			System.exit(-1);
 		} catch (IOException e) {
-			System.err.println("IO error");
+			JOptionPane.showMessageDialog(null, "Not found map image.");
+			System.exit(-1);
 		}
 	}
 	public static Map getMap(){

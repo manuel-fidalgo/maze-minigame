@@ -53,6 +53,7 @@ public class MainWindow{
 		int vision_x,vision_y;
 		vision_x=13;
 		vision_y=13;
+		godmode=true;
 		this.map = new MatrixTiles(vision_x,vision_y,godmode);
 		frame.setBounds(10, 10, vision_x*PIXELS, vision_y*PIXELS+30);
 		frame.setResizable(true);

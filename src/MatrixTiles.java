@@ -42,7 +42,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 
 		this.currentFil = 8;
 		this.currentCol = 191;
-		this.finalFil=191;
+		this.finalFil=190;
 		this.finalCol=8;
 
 		try {

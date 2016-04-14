@@ -19,7 +19,7 @@ public class Map {
 		BufferedImage image;
 		Color aux;
 		try {
-			image = ImageIO.read(getClass().getResourceAsStream("maze_200.png"));
+			image = ImageIO.read(getClass().getResourceAsStream("maze_3.png"));
 			len = image.getWidth();
 			if(len != image.getHeight()) throw new IOException("Is not a square map");
 			

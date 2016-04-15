@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
+@SuppressWarnings("unused")
 public class Map {
 	private char[][] map;
 	private static Map singleton_map;
@@ -43,18 +44,22 @@ public class Map {
 			System.exit(-1);
 		}
 	}
+	
 	public static Map getMap(){
 		if(singleton_map==null){
 			singleton_map=new Map();
 		}
 		return singleton_map;
 	}
+	
 	public static int getLengh(){
 		return len;
 	}
+	
 	public char getAt(int x, int y){
 		return this.map[x][y];
 	}
+	
 	@Override 
 	public String toString(){
 		StringBuffer sf = new StringBuffer();

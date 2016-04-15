@@ -10,7 +10,7 @@ public class Animator extends Thread{
 		while(true){
 			
 			try {
-				Thread.sleep(500);
+				Thread.sleep(300);
 				mt.getTileAt(mt.currentFil,mt.currentCol).changeFrame();
 				for(Box i : mt.cherry_boxes){
 					mt.getTileAt(i.fil, i.col).changePosition();

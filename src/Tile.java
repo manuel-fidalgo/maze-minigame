@@ -30,9 +30,6 @@ public class Tile extends JComponent{
 	public static int currentInUp=7;
 	
 	
-	
-	
-
 
 	public Tile(int i){
 		this.type = i;

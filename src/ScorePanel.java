@@ -10,28 +10,30 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class ScorePanel extends JComponent{
 	public int points;
 	public static final String msg_1 = "Score: ";
 	public static final String msg_2 = "Time: ";
 	public static ScorePanel panel_singleton;
 	private Image back;
-	private GraphicsEnvironment ge;
+	//private GraphicsEnvironment ge;
 	private Font current_font;
 	
 	private ScorePanel() {
 		this.points=0;
 		this.setBounds(0, 0, 300, 300);
+		/*
 		try{
 		back = new ImageIcon(getClass().getResource("BACKGROUND.png")).getImage();
-		current_font = Font.createFont(Font.TRUETYPE_FONT, new File("FONT.ttf")).deriveFont(60f);
-		ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("FONT.ttf")));
+		//current_font = Font.createFont(Font.TRUETYPE_FONT, new File("FONT.ttf")).deriveFont(60f);
+		//ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		//ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("FONT.ttf")));
 		} catch (FontFormatException | IOException e) {
 			System.out.println("Font not found");
 			e.printStackTrace();
 		}
+		*/
 		
 	}
 	public static ScorePanel getScorePanel(){

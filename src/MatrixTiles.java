@@ -40,7 +40,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		g = new GridLayout(this.vision_xmaplength,this.vision_ymaplength);
 		this.setLayout(g);
 
-		this.currentFil = 8;
+		this.currentFil = 7;
 		this.currentCol = 98;
 		this.finalFil=98;
 		this.finalCol=8;
@@ -54,14 +54,17 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		anim.start();
 		loadPortion(currentFil,currentCol);
 	}
+	
 	public Tile getTileAt(int i, int j){
 		return this.tiles_matrix[i][j];
 	}
+	
 	/**
 	 * Load the map into tiles_matrix
 	 * @param Map p
 	 * @throws IOException
 	 */
+	
 	public void loadMap(Map p) throws IOException{
 		this.tiles_matrix = new Tile[Map.getLengh()][Map.getLengh()];
 		for (int i = 0; i < tiles_matrix.length; i++) {

@@ -75,7 +75,11 @@ public class MatrixTiles extends JPanel implements KeyListener{
 					break;
 				case Map.NO_BLOCK:
 					tiles_matrix[i][j] = new Tile(Tile.NO_BLOCK);
-					if(((Math.random()*1000))<3) tiles_matrix[i][j].doCherry();
+					if(((Math.random()*1000))<3) 
+						tiles_matrix[i][j].doCherry();
+					else if(((Math.random()*1000))<300) 
+						tiles_matrix[i][j].putGrass();
+					
 					break;
 				default:
 					throw new IOException("No matching map type");

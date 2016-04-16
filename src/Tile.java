@@ -11,6 +11,7 @@ public class Tile extends JComponent{
 	public static int BLOCK = 1;
 	public static int CHARACTER = 2;
 	public static int CHERRY = 3;
+	public static int GRASS = 4;
 	private boolean up;
 	public int type;
 	private Image image;
@@ -49,19 +50,22 @@ public class Tile extends JComponent{
 	}
 	public synchronized void assignImage(){
 		if(this.type==Tile.NO_BLOCK){
-			image = new ImageIcon(getClass().getResource("FLOOR_MINI.png")).getImage();
+			image = new ImageIcon(getClass().getResource("FLOOR.png")).getImage();
 		}
 		if(this.type==Tile.BLOCK){
-			image = new ImageIcon(getClass().getResource("NEWTREE_MINI.png")).getImage();
+			image = new ImageIcon(getClass().getResource("TREE.png")).getImage();
 		}
 		if(this.type==Tile.CHARACTER){
 			changeFrame();
 		}
 		if(this.type==Tile.CHERRY){
 			if(up)
-				image = new ImageIcon(getClass().getResource("CHERRY_UP.png")).getImage();
+				image = new ImageIcon(getClass().getResource("ITEM_UP.png")).getImage();
 			else
-				image = new ImageIcon(getClass().getResource("CHERRY_DOWN.png")).getImage();
+				image = new ImageIcon(getClass().getResource("ITEM_DOWN.png")).getImage();
+		}
+		if(this.type==Tile.GRASS){
+				image = new ImageIcon(getClass().getResource("GRASS.png")).getImage();
 		}
 		repaint();
 	}
@@ -120,12 +124,14 @@ public class Tile extends JComponent{
 		if(currentInUp==10) currentInUp = 7;
 		return currentInUp;
 	}
-
-
 	/*Used for animate the cherries*/
 	public synchronized void changePosition() {
 		this.up = !this.up;
 		assignImage();
+	}
+	
+	public void putGrass() {
+		this.type = GRASS;
 	}
 
 }

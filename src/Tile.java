@@ -12,6 +12,7 @@ public class Tile extends JComponent{
 	public static int CHARACTER = 2;
 	public static int CHERRY = 3;
 	public static int GRASS = 4;
+	public static int FAIL = 5;
 	private boolean up;
 	public int type;
 	private Image image;
@@ -66,6 +67,9 @@ public class Tile extends JComponent{
 		}
 		if(this.type==Tile.GRASS){
 				image = new ImageIcon(getClass().getResource("GRASS.png")).getImage();
+		}
+		if(this.type == this.FAIL){
+			image = new ImageIcon(getClass().getResource("GRASS.png")).getImage();
 		}
 		repaint();
 	}

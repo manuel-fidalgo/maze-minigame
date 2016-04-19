@@ -40,8 +40,8 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		g = new GridLayout(this.vision_xmaplength,this.vision_ymaplength);
 		this.setLayout(g);
 
-		this.currentFil = 7;
-		this.currentCol = 98;
+		this.currentFil = 8;
+		this.currentCol = 93;
 		this.finalFil=98;
 		this.finalCol=8;
 
@@ -101,6 +101,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 					}
 					this.add(tiles_matrix[i][j]);
 				}catch(IndexOutOfBoundsException w){
+					this.add(new Tile(Tile.FAIL));
 					System.err.println("OutOfmap\n");
 				}
 			}

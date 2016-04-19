@@ -133,8 +133,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		case KeyEvent.VK_SPACE:
 			break;
 		case KeyEvent.VK_ESCAPE:
-			System.exit(0);
-			break;
+			pausedState();
 		default:
 			break;
 		}
@@ -210,6 +209,10 @@ public class MatrixTiles extends JPanel implements KeyListener{
 			currentFil--;
 		}
 		loadPortion(currentFil, currentCol);
+	}
+	private void pausedState() {
+		// TODO Auto-generated method stub
+		
 	}
 	/*Not Used*/
 	@Override

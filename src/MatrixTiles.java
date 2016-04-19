@@ -219,16 +219,17 @@ public class MatrixTiles extends JPanel implements KeyListener{
 	
 	private void pausedState() {
 		if(!paused){
-			paused = true;
 			removeAll();
 			this.setLayout(pause);
 			this.add(ScorePanel.getScorePanel());
 			validate();
+			paused = true;
 		}else{
-			paused = false;
 			removeAll();
 			this.setLayout(g);
 			loadPortion(currentFil, currentCol);
+			validate();
+			paused = false;
 		}
 	}
 	/*Not Used*/

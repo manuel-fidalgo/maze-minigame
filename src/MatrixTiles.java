@@ -19,15 +19,19 @@ public class MatrixTiles extends JPanel implements KeyListener{
 	@SuppressWarnings("unused") private int xmaplength,ymaplength;
 
 	Animator anim;
+
 	GridLayout g;
+	GridLayout pause;
+
+	public boolean paused;
 	/**
 	 * @param x vision x length
 	 * @param y vision y length
 	 * @param gmode 
 	 */
 	public MatrixTiles(int x, int y,boolean gmode){
-		godMode=gmode;
-
+		godMode = gmode;
+		paused = false;
 		this.vision_xmaplength = x;
 		this.vision_ymaplength = y;
 		cherry_boxes = new ArrayList<Box>();
@@ -38,6 +42,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 
 
 		g = new GridLayout(this.vision_xmaplength,this.vision_ymaplength);
+		pause = new GridLayout(1,1);
 		this.setLayout(g);
 
 		this.currentFil = 8;
@@ -54,17 +59,17 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		anim.start();
 		loadPortion(currentFil,currentCol);
 	}
-	
+
 	public Tile getTileAt(int i, int j){
 		return this.tiles_matrix[i][j];
 	}
-	
+
 	/**
 	 * Load the map into tiles_matrix
 	 * @param Map p
 	 * @throws IOException
 	 */
-	
+
 	public void loadMap(Map p) throws IOException{
 		this.tiles_matrix = new Tile[Map.getLengh()][Map.getLengh()];
 		for (int i = 0; i < tiles_matrix.length; i++) {
@@ -79,7 +84,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 						tiles_matrix[i][j].doCherry();
 					else if(((Math.random()*1000))<300) 
 						tiles_matrix[i][j].putGrass();
-					
+
 					break;
 				default:
 					throw new IOException("No matching map type");
@@ -116,19 +121,19 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		switch (arg0.getKeyCode()) {
 		case KeyEvent.VK_UP:
 		case KeyEvent.VK_W:
-			tryMoveUp();
+			if(!paused) tryMoveUp();
 			break;
 		case KeyEvent.VK_DOWN:
 		case KeyEvent.VK_S:
-			tryMoveDown();
+			if(!paused) tryMoveDown();
 			break;
 		case KeyEvent.VK_LEFT:
 		case KeyEvent.VK_A:
-			tryMoveLeft();
+			if(!paused) tryMoveLeft();
 			break;
 		case KeyEvent.VK_RIGHT:
 		case KeyEvent.VK_D:
-			tryMoveRight();
+			if(!paused) tryMoveRight();
 			break;
 		case KeyEvent.VK_SPACE:
 			break;
@@ -201,6 +206,7 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		}
 		loadPortion(currentFil, currentCol);
 	}
+	
 	private void moveUp() {
 		if(godMode || tiles_matrix[currentFil-1][currentCol].getType()!=Tile.BLOCK){
 			if(tiles_matrix[currentFil-1][currentCol].getType()==Tile.CHERRY)ScorePanel.getScorePanel().addPoint();
@@ -210,9 +216,20 @@ public class MatrixTiles extends JPanel implements KeyListener{
 		}
 		loadPortion(currentFil, currentCol);
 	}
+	
 	private void pausedState() {
-		// TODO Auto-generated method stub
-		
+		if(!paused){
+			paused = true;
+			removeAll();
+			this.setLayout(pause);
+			this.add(ScorePanel.getScorePanel());
+			validate();
+		}else{
+			paused = false;
+			removeAll();
+			this.setLayout(g);
+			loadPortion(currentFil, currentCol);
+		}
 	}
 	/*Not Used*/
 	@Override

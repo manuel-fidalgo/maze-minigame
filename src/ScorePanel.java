@@ -10,7 +10,7 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
-@SuppressWarnings({ "serial", "unused" })
+@SuppressWarnings({ "serial" })
 public class ScorePanel extends JComponent{
 	public int points;
 	public static final String msg_1 = "Score: ";
